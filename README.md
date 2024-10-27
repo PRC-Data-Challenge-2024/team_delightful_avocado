@@ -4,7 +4,7 @@ This repository contains the code and data for the Performance Review Commission
 More information about the challenge can be found [here](https://ansperformance.eu/study/data-challenge/).
 
 ## Installation and Execution
-To install the required Python (this repository was made with Python 3.11) packages, run the following command:
+To install the required Python (this repository was made using Python 3.11) packages, run the following command:
 ```bash
 pip install -r requirements.txt
 ```
@@ -36,9 +36,9 @@ jupyter notebook feature_importances.ipynb
 
 
 ## Data Preparation
-You can find all the used data in the [`data`](data) folder. The data is already preprocessed and ready to be used for training and evaluation.
-Used features and sources can be found [README_datapreparation.md](README_datapreparation.md).
-The data is computed for the challenge set and for the (final) submission set.
+You can find all used data in the [`data`](data) folder. The data is already preprocessed and ready to be used for training and evaluation.
+Used features and sources can be found in the [README_datapreparation.md](README_datapreparation.md).
+The data is computed for the challenge and final submission sets.
 For each set, we can compute a feature matrix X and for the challenge set, we can compute the target vector y (the given takeoff weights).
 After all data sources have been prepared the feature matrix X and target vector y can be obtained by calling `get_data()` in [`create_Xy.py`](create_Xy.py).
 
@@ -50,17 +50,18 @@ We performed hyperparameter optimisation using Bayesian optimisation with the [s
 
 ## Evaluation
 
-We can now take a look at the models parameters and evaluate the inference of each individual parameter to the models output.
+We can now take a look at the model parameters and evaluate the inference of each individual parameter to the model output.
 The underlying model is a HistGradientBoostingRegressor, which can be analyzed using the `shap` library.
 SHAP (SHapley Additive exPlanations) values can be used to explain the model's predictions and understand the importance of each feature in the prediction.
 You can find detailed values and plots in the [`feature_importances.ipynb`](feature_importances.ipynb) notebook.
 
-Most important features are `mtom, aircraft_type, oew` which are closely related to the airplane type.
-Therefore, we assume the models performance could be improved by adding airplane variants to the dataset.
+The features with the highest SHAP values are `mtom, aircraft_type, oew` which are closely related to the aircraft type.
+Therefore, we surmise the model performance could be improved by adding aircraft variants to the dataset, making these values more specific.
 We also provide some mean values of the feature parameters of the challenge set for the different aircraft types in the [`data/mean_data.csv`](data/mean_data.csv) file.
 
 Further important features are the mean climb rate value during the climb phase having an inverse effect on the takeoff weight, e.g. indicating an empty aircraft having better climb performance.
-Interestingly, there also is an influence of the airline indicating maybe different operating specifics.
+Interestingly, there also is an influence of the airline possibly indicating different operating specifics.
+However, the high SHAP values could likely also be related to the aircraft type, which will correlate with the airline.
 
 
 ## Results
