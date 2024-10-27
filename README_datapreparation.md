@@ -2,7 +2,7 @@
 The data preparation takes place in the `data_augmentation.py` and `create_Xy.py`files.
 There, we define the transformation pipeline and calculate features from the sources below.
 The provided, extracted and external downloaded data can be found in the `data/` folder.
-We use the following data sources for training: 
+We use the following data sources for training:
 - [`data/challenge_set.csv`](data/challenge_set.csv): the main data source provided by the challenge, containing the flight ids
 - `data/challenge_set_parquet.csv` [^1]: the extracted data from parquet files corresponding to the flight ids in `challenge_set.csv`
 - [`data/airport-data.csv`](data/airport-data.csv): the data from OurAirports, containing information about the aerodromes
@@ -11,7 +11,7 @@ We use the following data sources for training:
 
 ### Features from the csv file `challenge_set.csv`
 We use the following features from the csv file:
-- `actual_offblock_time`: extracting the following features. Importantly, we convert all times to local time of the departure aerodrome
+- `actual_offblock_time`: extracting the following features. Importantly, we convert all times to local times of the departure aerodrome
     - `month`
     - `day`
     - `hour`
@@ -100,9 +100,9 @@ We use OurAirports[^3] to extract the following features:
 - `haversine_distance`: haversine distance between the departure and arrival aerodrome, using the coordinates of the departure and arrival aerodromes
 
 
-### Airplane Model specific masses [`masses.csv`](data/masses.csv)
+### Aircraft Model specific masses [`masses.csv`](data/masses.csv)
 Since the challenge data does not contain the specific aircraft variant, obtaining the operating empty weights and maximum takeoff mass can be challenging.
-Individual aircraft type oew and mtom data was sourced from Wikipedia contributors, licensed under CC BY-SA 4.0 (compatible with the GPLv3.0 license).
+Individual aircraft type OEW and MTOM data was sourced from Wikipedia contributors, licensed under CC BY-SA 4.0 (compatible with the GPLv3.0 license).
 Some of these were augmented, taking into account the challenge data set takeoff weights.
 The following features are stored in the masses data file:
 - `aircraft_type`: aircraft type (grouped the same as in the challenge data)
