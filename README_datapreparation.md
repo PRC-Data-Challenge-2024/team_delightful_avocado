@@ -1,4 +1,4 @@
-\usepackage{ulem}## Data preparation
+## Data preparation
 The data preparation takes place in the `data_augmentation.py` and `create_Xy.py`files.
 There, we define the transformation pipeline and calculate features from the sources below.
 The provided, extracted and external downloaded data can be found in the `data/` folder.
